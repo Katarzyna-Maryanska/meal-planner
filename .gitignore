@@ -5,6 +5,11 @@
 /.pnp
 .pnp.js
 
+# compiled output
+/dist
+/tmp
+/out-tsc
+
 # testing
 /coverage
 
@@ -32,3 +37,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# IDEs and editors
+/.idea
