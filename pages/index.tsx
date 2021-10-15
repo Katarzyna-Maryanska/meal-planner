@@ -1,29 +1,21 @@
-import Link from "next/link";
-import {
-  ThemeProvider,
-  ColorModeProvider,
-  CSSReset,
-  GlobalStyle,
-} from "@chakra-ui/react";
+import { Banner } from "components/pages/shared";
+import { Layout, SEO } from "components/app";
+import { MenuGenerator, Reviews } from "components/pages/homepage";
+import bannerImage from "assets/images/tarta.jpg";
 
-import Layout from "../components/Layout";
-import { theme } from "../styles/theme";
-
-const IndexPage = () => (
-  <ThemeProvider theme={theme}>
-    <ColorModeProvider options={theme.config}>
-      <CSSReset />
-      <GlobalStyle />
-      <Layout title="Home | Next.js + TypeScript Example">
-        <h1>Hello Next.js 👋</h1>
-        <p>
-          <Link href="/about">
-            <a>About</a>
-          </Link>
-        </p>
-      </Layout>
-    </ColorModeProvider>
-  </ThemeProvider>
+const HomePage = () => (
+  <>
+    <SEO
+      title="DietPlanner | Home page"
+      metatitle="DietPlanner | Home page"
+      description="Lets generate menu"
+    />
+    <Layout>
+      <Banner src={bannerImage}>Cooking a delicious food easily</Banner>
+      <MenuGenerator />
+      <Reviews />
+    </Layout>
+  </>
 );
 
-export default IndexPage;
+export default HomePage;
