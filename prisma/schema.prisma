@@ -1,0 +1,49 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model MealPlan {
+  id             String          @id @default(cuid())
+  name           String
+  dailyMealPlans DailyMealPlan[]
+}
+
+model DailyMealPlan {
+  id         String    @id @default(cuid())
+  title      String
+  meals      Meal[]
+  MealPlan   MealPlan? @relation(fields: [mealPlanId], references: [id])
+  mealPlanId String?
+}
+
+model Meal {
+  id              String         @id @default(cuid())
+  title           String
+  type            String
+  ingredients     Ingredient[]
+  preparation     Step[]
+  tips            String
+  DailyMealPlan   DailyMealPlan? @relation(fields: [dailyMealPlanId], references: [id])
+  dailyMealPlanId String?
+}
+
+model Ingredient {
+  id          String  @id @default(cuid())
+  number      Int
+  description String
+  Meal        Meal?   @relation(fields: [mealId], references: [id])
+  mealId      String?
+}
+
+model Step {
+  id          String  @id @default(cuid())
+  number      Int
+  description String
+  Meal        Meal?   @relation(fields: [mealId], references: [id])
+  mealId      String?
+}
